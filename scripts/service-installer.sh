@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 set -o errexit
 
 if [[ $EUID -ne 0 ]]; then
