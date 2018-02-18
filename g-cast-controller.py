@@ -5,13 +5,21 @@ import buttonshim
 import time
 import pychromecast
 
+#The IP Address should match the device name or they must be in the same order
+
+#Enter the IP Addresses of your Google Cast devices
 chromecasts_ip=['192.168.1.4','192.168.1.13']
+
+#Enter the names of the Google Cast devices as in the Google App
 chromecasts_name=['Living Room Speaker','Living Room TV']
+
 
 devices=pychromecast.get_chromecasts()
 print("""
 Press the buttons once to control first cast device, press and hold the buttons to control the second cast device.
 Press Ctrl+C to exit.
+
+If you want to control more than one device, press and hold A button to switch between devices.
 
 A="Pause"
 B="Play"
