@@ -18,6 +18,7 @@ sudo pip3 install pychromecast
 
 #### Step-3 - Clone the project using:  
 ````  
+cd /home/pi/  
 sudo git clone https://github.com/shivasiddharth/pi-gcast-remote  
 ````  
 
