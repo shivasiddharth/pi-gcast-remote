@@ -35,4 +35,4 @@ sudo chmod +x /home/pi/pi-gcast-remote/scripts/service-installer.sh
 sudo /home/pi/pi-gcast-remote/scripts/service-installer.sh  
 ````  
 
-#### Note: **[pychromecast]**(https://github.com/balloob/pychromecast) API takes time to check for the active devices, hence continuous device status monitoring has not been added as it would cause delays to get a response from a device on button press. So the remote control program should be started after making sure that your devices are online.  
+#### Note: **[pychromecast](https://github.com/balloob/pychromecast)** API takes time to check for the active devices, hence continuous device status monitoring has not been added as it would cause delays to get a response from a device on button press. So the remote control program should be started after making sure that your devices are online.  
