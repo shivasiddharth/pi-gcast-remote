@@ -1,13 +1,12 @@
 [Unit]
-Description=Google Assistant
+Description=Remote Control for Google Cast Devices
 Wants=network-online.target
 After=network-online.target
 
 
 [Service]
-Environment=VIRTUAL_ENV=/home/pi/env
 Environment=PATH=/home/pi/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ExecStart=/home/pi/env/bin/python -u /home/pi/GassistPi/src/stopbutton.py
+ExecStart=/home/pi/bin/python3 -u /home/pi/pi-gcast-remote/g-cast-controller.py
 WorkingDirectory=/home/pi/
 StandardOutput=inherit
 StandardError=inherit
