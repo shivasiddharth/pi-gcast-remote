@@ -39,4 +39,12 @@ sudo chmod +x /home/pi/pi-gcast-remote/scripts/service-installer.sh
 sudo /home/pi/pi-gcast-remote/scripts/service-installer.sh  
 ````  
 
+#### Step-6 - Enable the service to start on boot:   
+````
+sudo systemctl enable gcastremote.service   
+````  
+
+**To switch between the devices, press and hold the A button/key.**  
+
+
 #### Note: **[pychromecast](https://github.com/balloob/pychromecast)** API takes time to get the list of active devices, hence continuous device status monitoring has not been added as it would cause delays to get a response from a device on button press. So the remote control program should be started after making sure that your devices are online.  
