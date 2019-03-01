@@ -33,7 +33,7 @@ while True:
   if devices==[]:
      print("No Device Online")
   elif not devices==[]:
-     if len(devices)==len(chromecasts_name):
+     if len(devices)==len(chromecasts_name) and len(devices)>1:
         buttonshim.set_pixel(0x94, 0x00, 0xd3)
         @buttonshim.on_hold(buttonshim.BUTTON_A, hold_time=2)
         def button_a(button):
@@ -73,7 +73,7 @@ while True:
            cast.wait()
            time.sleep(1)
            cast.volume_up(0.1)
-     elif len(devices)<len(chromecasts_name):
+     elif len(devices)<len(chromecasts_name) or len(devices)==1:
         if devices[0].device.friendly_name==chromecasts_name[0]:
            buttonshim.set_pixel(0x00, 0x00, 0xff)
            @buttonshim.on_press(buttonshim.BUTTON_A)
