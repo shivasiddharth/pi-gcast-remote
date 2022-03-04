@@ -46,6 +46,10 @@ while True:
         global selecteddevice
         selecteddevice^=1
         print("Device changed to",cc[selecteddevice].cast_info.friendly_name)
+        if selecteddevice==0:
+           buttonshim.set_pixel(0x00, 0x00, 0xff)
+        if selecteddevice==1:
+           buttonshim.set_pixel(0x00, 0xff, 0x00)
 
     @buttonshim.on_press(buttonshim.BUTTON_A)
     def button_a(button, pressed):
