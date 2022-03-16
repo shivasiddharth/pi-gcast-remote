@@ -23,8 +23,6 @@ print("""
 Press the buttons to control first cast device, press and hold the buttons to control the second cast device.
 Press Ctrl+C to exit.
 
-If you want to control more than one device, press and hold A button to switch between devices.
-
 A = "Pause"
 B = "Play"
 C = "Stop"
