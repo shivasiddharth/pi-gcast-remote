@@ -26,9 +26,6 @@ sudo git clone https://github.com/shivasiddharth/pi-gcast-remote
 
 #### Step-4 - Declare your Google Cast devices in the g-cast-controller.py script  
 ````
-#Enter the IP Addresses of your Google Cast devices   
-chromecasts_ip=['192.168.1.4','192.168.1.13']   
-   
 #Enter the names of the Google Cast devices as in the Google App  
 chromecasts_name=['Living Room Speaker','Living Room TV']  
 ````  
