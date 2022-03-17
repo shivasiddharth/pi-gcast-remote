@@ -20,10 +20,8 @@ for device in devices:
        cc.append(device)
 
 print("""
-Press the buttons once to control first cast device, press and hold the buttons to control the second cast device.
+Press the buttons to control first cast device, press and hold the buttons to control the second cast device.
 Press Ctrl+C to exit.
-
-If you want to control more than one device, press and hold A button to switch between devices.
 
 A = "Pause"
 B = "Play"
@@ -40,21 +38,29 @@ while True:
   elif not devices==[]:
 
     if len(cc) > 1:
-      @buttonshim.on_hold(buttonshim.BUTTON_A, hold_time=2)
-      def button_a(button):
-        #print('A long pressed')
+      @buttonshim.on_press(None)
+      def button_press(button, state):
+        # assume any button press is a short press... (device #1)
+        buttonshim.set_pixel(0x00, 0x00, 0x00)
         global selecteddevice
-        selecteddevice^=1
-        print("Device changed to",cc[selecteddevice].cast_info.friendly_name)
-        if selecteddevice==0:
-           buttonshim.set_pixel(0x00, 0x00, 0xff)
-        if selecteddevice==1:
-           buttonshim.set_pixel(0x00, 0xff, 0x00)
+        selecteddevice=0
 
-    @buttonshim.on_press(buttonshim.BUTTON_A)
+      @buttonshim.on_hold(None)
+      def button_hold(button, hold_time=1):
+        # ...but then long press on any button = device #2
+        # flash the led green to indicate the button's been held long enough
+        buttonshim.set_pixel(0x00, 0xFF, 0x00)
+        print(buttonshim.NAMES[button],'long pressed')
+        global selecteddevice
+        selecteddevice=1
+        print("Target device",cc[selecteddevice].cast_info.friendly_name)
+        # turn off the led
+        buttonshim.set_pixel(0x00, 0x00, 0x00)
+
+    @buttonshim.on_release(buttonshim.BUTTON_A)
     def button_a(button, pressed):
        #print('A pressed')
-       buttonshim.set_pixel(0xFF, 0xA5, 0x00)
+       buttonshim.set_pixel(0xFF, 0xEE, 0x00)
        cast=cc[selecteddevice]
        mc=cast.media_controller
        cast.wait()
@@ -62,7 +68,7 @@ while True:
        mc.pause()
        #buttonshim.set_pixel(0x00, 0x00, 0x00)
 
-    @buttonshim.on_press(buttonshim.BUTTON_B)
+    @buttonshim.on_release(buttonshim.BUTTON_B)
     def button_b(button, pressed):
        #print('B pressed')
        buttonshim.set_pixel(0x00, 0xFF, 0x00)
@@ -73,7 +79,7 @@ while True:
        mc.play()
        buttonshim.set_pixel(0x00, 0x00, 0x00)
 
-    @buttonshim.on_press(buttonshim.BUTTON_C)
+    @buttonshim.on_release(buttonshim.BUTTON_C)
     def button_c(button, pressed):
        #print('C pressed')
        buttonshim.set_pixel(0xFF, 0x00, 0x00)
@@ -82,21 +88,22 @@ while True:
        cast.wait()
        time.sleep(1)
        mc.stop()
+       buttonshim.set_pixel(0x00, 0x00, 0x00)
 
-    @buttonshim.on_press(buttonshim.BUTTON_D)
+    @buttonshim.on_release(buttonshim.BUTTON_D)
     def button_d(button, pressed):
        #print('D pressed')
-       buttonshim.set_pixel(0xFF, 0xFF, 0x00)
+       buttonshim.set_pixel(0xFF, 0x80, 0xFF)
        cast=cc[selecteddevice]
        cast.wait()
        time.sleep(1)
        cast.volume_down(0.1)
        buttonshim.set_pixel(0x00, 0x00, 0x00)
 
-    @buttonshim.on_press(buttonshim.BUTTON_E)
+    @buttonshim.on_release(buttonshim.BUTTON_E)
     def button_e(button, pressed):
        #print('E pressed')
-       buttonshim.set_pixel(0xFF, 0xFF, 0x00)
+       buttonshim.set_pixel(0xFF, 0x80, 0xFF)
        cast=cc[selecteddevice]
        cast.wait()
        time.sleep(1)
